@@ -46,5 +46,5 @@ $ yarn run start:dev
 # production mode
 $ yarn run start:prod
 ```
-The Swagge will be running  [locally](localhost:<port>:api/v1) and it is also deployed in this [link](https://gateways-backend.onrender.com/api/v1)
+The Swagger will be running locally on **```localhost:<port>:api/v1```** and it is also deployed in this [link.](https://gateways-backend.onrender.com/api/v1)
 
