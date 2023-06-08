@@ -28,6 +28,14 @@ export class DevicesController {
     return this.deviceService.findOne(id);
   }
 // -----------------------------------------------------
+@ApiOperation({ summary: 'Find by Gateway id' })
+  @Get(':id')
+  findByGatewayId(@Param('id') id: string) {
+    return this.deviceService.findByGatewayId(id);
+  }
+// -----------------------------------------------------
+
+
 @ApiOperation({ summary: 'Update device' })
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateDeviceDto: UpdateDeviceDto) {
