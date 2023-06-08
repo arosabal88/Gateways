@@ -29,7 +29,7 @@ export class DevicesController {
   }
 // -----------------------------------------------------
 @ApiOperation({ summary: 'Find devices by Gateway id' })
-  @Get(':id')
+  @Get('byGatewayId/:id')
   findByGatewayId(@Param('id') id: string) {
     return this.deviceService.findByGatewayId(id);
   }

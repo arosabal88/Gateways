@@ -52,20 +52,23 @@ export class DevicesService {
 // -----------------------------------------------------
   async findOne(id: string) {
     if(!isMongoId(id))
-    throw new BadRequestException(`Id is not a valid MongoId`)
-     try {
-      let device = await this.deviceModel.findById(id);
-      if(!device){
-        throw new NotFoundException(`Device not found`)
-      }
-      return device;
-    } catch (error) {
-      throw new InternalServerErrorException(`Can't find device. Internal server error`);  
+    throw new BadRequestException(`Id is not a valid MongoId`);
+    let device = await this.deviceModel.findOne({_id:id,state:true});
+    if(!device){
+      throw new NotFoundException(`Device not found`)
     }
-  }
+    return device;
+   }
 // -----------------------------------------------------
 async findByGatewayId(gatewayId: string) {
-  return await this.deviceModel.find({gatewayId})
+  if(!isMongoId(gatewayId))
+  throw new BadRequestException(`Id is not a valid MongoId`);
+  let devices = await this.deviceModel.find({gatewayId, state:true});
+  if(!devices){
+    throw new NotFoundException(`Device not found`)
+  }
+  return devices;
+
 }
 // -----------------------------------------------------
   async update(id: string, updateDeviceDto: UpdateDeviceDto) {
